@@ -5,39 +5,39 @@
 @using (Html.BeginForm("OrderList", "Order", FormMethod.Post))
 {
 
-    <table>
+    <table style="margin-top:10px;">
         <tr>
             <td>@Html.LabelFor(m => m.OrderID)</td>
-            <td colspan="3">@Html.EditorFor(m => m.OrderID)</td>
+            <td colspan="3">@Html.TextBoxFor(m => m.OrderID, new { type= "number", @class="form-control input-number", style="width:200px"})</td>
         </tr>
         <tr>
             <td>@Html.LabelFor(m => m.CompanyName)</td>
-            <td colspan="3">@Html.EditorFor(m => m.CompanyName)</td>
+            <td colspan="3">@Html.TextBoxFor(m => m.CompanyName, new { @class="form-control", style = "width:200px" })</td>
         </tr>
         <tr>
             <td>@Html.LabelFor(m => m.EmployeeID)</td>
-            <td colspan="3">@Html.DropDownListFor(m => m.EmployeeID, (IEnumerable<SelectListItem>)ViewBag.EmployeeList, "請選擇")</td>
+            <td colspan="3">@Html.DropDownListFor(m => m.EmployeeID, (IEnumerable<SelectListItem>)ViewBag.EmployeeList, "請選擇", new { @class = "form-control", style = "width:200px" })</td>
         </tr>
         <tr>
             <td>@Html.LabelFor(m => m.ShipperID)</td>
-            <td colspan="3">@Html.DropDownListFor(m => m.ShipperID, (IEnumerable<SelectListItem>)ViewBag.ShipperList, "請選擇")</td>
+            <td colspan="3">@Html.DropDownListFor(m => m.ShipperID, (IEnumerable<SelectListItem>)ViewBag.ShipperList, "請選擇", new { @class = "form-control", style = "width:200px" })</td>
         </tr>
         <tr>
             <td>@Html.LabelFor(m => m.OrderDate)</td>
-            <td>@Html.TextBoxFor(m => m.OrderDate, new { type = "date" })</td>
+            <td>@Html.TextBoxFor(m => m.OrderDate, new { type = "date" , @class="form-control", style = "width:200px" })</td>
             <td>@Html.LabelFor(m => m.ShipedDate)</td>
-            <td>@Html.TextBoxFor(m => m.ShipedDate, new { type = "date" })</td>
+            <td>@Html.TextBoxFor(m => m.ShipedDate, new { type = "date", @class = "form-control", style = "width:200px" })</td>
         </tr>
         <tr>
             <td>@Html.LabelFor(m => m.RequiredDate)</td>
-            <td colspan="3">@Html.TextBoxFor(m => m.RequiredDate, new { type = "date" })</td>
+            <td colspan="3">@Html.TextBoxFor(m => m.RequiredDate, new { type = "date", @class = "form-control", style = "width:200px" })</td>
         </tr>
         <tr>
             <td></td>
             <td colspan="3">
-                <input type="submit" value="查詢" />
-                <input type="reset" value="清除" />
-                <button type="button" onclick="location.href='@Url.Action("CreateOrder", "Order")';">新增訂單</button>
+                <input type="submit" value="查詢" class="btn btn-primary" />
+                <input type="reset" value="清除" class="btn btn-warning" />
+                <button type="button" class="btn btn-info" onclick="location.href='@Url.Action("CreateOrder", "Order")';">新增訂單</button>
             </td>
         </tr>
     </table>

@@ -4,94 +4,94 @@
 @using (Html.BeginForm("UpdateOrder", "Order", FormMethod.Post))
 {
     @Html.HiddenFor(m => m.OrderID)
-    <table>
+    <table style="margin-top:20px">
         <tr></tr>
         <tr>
             <td>@Html.LabelFor(m => m.CustomerID, new { @class = "required" })</td>
             <td colspan="3">
-                @Html.DropDownListFor(m => m.CustomerID, (IEnumerable<SelectListItem>)ViewBag.CustomerList, "請選擇")
+                @Html.DropDownListFor(m => m.CustomerID, (IEnumerable<SelectListItem>)ViewBag.CustomerList, "請選擇", new { @class = "form-control", style = "width:200px" })
                 @Html.ValidationMessageFor(m => m.CustomerID)
             </td>
         </tr>
         <tr>
             <td>@Html.LabelFor(m => m.EmployeeID, new { @class = "required" })</td>
             <td colspan="3">
-                @Html.DropDownListFor(m => m.EmployeeID, (IEnumerable<SelectListItem>)ViewBag.EmployeeList, "請選擇")
+                @Html.DropDownListFor(m => m.EmployeeID, (IEnumerable<SelectListItem>)ViewBag.EmployeeList, "請選擇", new { @class = "form-control", style = "width:200px" })
                 @Html.ValidationMessageFor(m => m.EmployeeID)
             </td>
         </tr>
         <tr>
             <td>@Html.LabelFor(m => m.OrderDate, new { @class = "required" })</td>
             <td>
-                @Html.TextBoxFor(m => m.OrderDate, "{0:yyyy-MM-dd}", new { type = "date" })
+                @Html.TextBoxFor(m => m.OrderDate, "{0:yyyy-MM-dd}", new { type = "date", @class = "form-control", style = "width:150px" })
                 @Html.ValidationMessageFor(m => m.OrderDate)
             </td>
             <td>@Html.LabelFor(m => m.RequiredDate, new { @class = "required" })</td>
             <td>
-                @Html.TextBoxFor(m => m.RequiredDate, new { type = "date", Value = Model.RequiredDate.ToString("yyyy-MM-dd") })
+                @Html.TextBoxFor(m => m.RequiredDate, new { type = "date", Value = Model.RequiredDate.ToString("yyyy-MM-dd"), @class = "form-control", style = "width:150px" })
                 @Html.ValidationMessageFor(m => m.RequiredDate)
             </td>
         </tr>
         <tr>
             <td>@Html.LabelFor(m => m.ShipedDate)</td>
             <td colspan="3">
-                @Html.TextBoxFor(m => m.ShipedDate, "{0:yyyy-MM-dd}", new { type = "date" })
+                @Html.TextBoxFor(m => m.ShipedDate, "{0:yyyy-MM-dd}", new { type = "date", @class = "form-control", style = "width:150px" })
             </td>
         </tr>
         <tr>
             <td>@Html.LabelFor(m => m.ShipperID)</td>
-            <td colspan="3">@Html.DropDownListFor(m => m.ShipperID, (IEnumerable<SelectListItem>)ViewBag.ShipperList, "請選擇")</td>
+            <td colspan="3">@Html.DropDownListFor(m => m.ShipperID, (IEnumerable<SelectListItem>)ViewBag.ShipperList, "請選擇", new { @class = "form-control", style = "width:200px" })</td>
         </tr>
         <tr>
             <td>@Html.LabelFor(m => m.Freight)</td>
-            <td colspan="3">@Html.TextBoxFor(m => m.Freight, new { type = "number", @class = "input-number" })</td>
+            <td colspan="3">@Html.TextBoxFor(m => m.Freight, new { type = "number", @class = "input-number form-control", style = "width:150px" })</td>
         </tr>
         <tr>
             <td>@Html.LabelFor(m => m.ShipCountry)</td>
             <td>
-                @Html.TextBoxFor(m => m.ShipCountry)
+                @Html.TextBoxFor(m => m.ShipCountry, new { @class = "form-control" })
                 @Html.ValidationMessageFor(m => m.ShipCountry)
             </td>
             <td>@Html.LabelFor(m => m.ShipCity)</td>
             <td>
-                @Html.TextBoxFor(m => m.ShipCity)
+                @Html.TextBoxFor(m => m.ShipCity, new { @class = "form-control" })
                 @Html.ValidationMessageFor(m => m.ShipCity)
             </td>
         </tr>
         <tr>
             <td>@Html.LabelFor(m => m.ShipRegin)</td>
             <td>
-                @Html.TextBoxFor(m => m.ShipRegin)
+                @Html.TextBoxFor(m => m.ShipRegin, new { @class = "form-control" })
                 @Html.ValidationMessageFor(m => m.ShipRegin)
             </td>
             <td>@Html.LabelFor(m => m.ShipPostalCode)</td>
             <td>
-                @Html.TextBoxFor(m => m.ShipPostalCode)
+                @Html.TextBoxFor(m => m.ShipPostalCode, new { @class = "form-control" })
                 @Html.ValidationMessageFor(m => m.ShipPostalCode)
             </td>
         </tr>
         <tr>
             <td>@Html.LabelFor(m => m.ShipAddress)</td>
             <td colspan="3">
-                @Html.TextBoxFor(m => m.ShipAddress)
+                @Html.TextBoxFor(m => m.ShipAddress, new { @class = "form-control" })
                 @Html.ValidationMessageFor(m => m.ShipAddress)
             </td>
         </tr>
         <tr>
             <td></td>
             <td colspan="3">
-                <input type="submit" value="存檔" />
+                <input type="submit" value="存檔" class="btn btn-primary" />
             </td>
         </tr>
     </table>
 }
-
-@using (Html.BeginForm("DeleteOrder", "Order", FormMethod.Get))
-{
-    @Html.Hidden("orderID", Model.OrderID)
-    <input type="submit" value="刪除本筆訂單" />
-}
-
-    <button type="button" onclick="location.href='@Url.Action("Query", "Order")';">回前一頁</button>
+<div style="margin-left:92px">
+    @using (Html.BeginForm("DeleteOrder", "Order", FormMethod.Get))
+    {
+        @Html.Hidden("orderID", Model.OrderID)
+        <input type="submit" value="刪除本筆訂單" class="btn btn-danger" />
+    }
+    <button type="button" class="btn btn-warning" style="margin-top:2px" onclick="location.href='@Url.Action("Query", "Order")';">回前一頁</button>
+</div>
 
 

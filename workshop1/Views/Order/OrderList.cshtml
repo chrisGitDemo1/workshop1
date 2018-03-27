@@ -3,10 +3,19 @@
     ViewBag.Title = "OrderList";
     IList<workshop1.Models.Customer> customers = ViewBag.Customers;
 }
+@section Style {
+    <style>
+        .table thead > tr > th {
+            text-align: center;
+        }
 
-<h2>OrderList</h2>
+        .center {
+            text-align:center;
+        }
+    </style>
+}
 
-<table>
+<table class="table table-striped">
     <thead>
         <tr>
             <th>訂單編號</th>
@@ -18,20 +27,21 @@
             <th></th>
         </tr>
     </thead>
-    @foreach (var order in Model)
-    {
-        <tr>
-            <td>@order.OrderID</td>
-            <td>@customers.Single(m => m.CustomerID == order.CustomerID).CompanyName</td>
-            <td>@order.OrderDate.ToString("yyyy/MM/dd")</td>
-            <td>@(order.ShipedDate.HasValue ? order.ShipedDate.Value.ToString("yyyy/MM/dd") : "")</td>
-            <td>@(order.Freight.HasValue ? order.Freight.Value.ToString("#,##0") : "")</td>
-            <td>@Html.ActionLink("修改", "UpdateOrder", new { controller="Order", orderID = order.OrderID })</td>
-            <td>@Html.ActionLink("刪除", "DeleteOrder", new { controller="Order", orderID = order.OrderID })</td>
-        </tr>
-    }
+    <tbody>
+        @foreach (var order in Model)
+        {
+            <tr>
+                <td class="input-number">@order.OrderID</td>
+                <td>@customers.Single(m => m.CustomerID == order.CustomerID).CompanyName</td>
+                <td class="center">@order.OrderDate.ToString("yyyy/MM/dd")</td>
+                <td class="center">@(order.ShipedDate.HasValue ? order.ShipedDate.Value.ToString("yyyy/MM/dd") : "")</td>
+                <td class="input-number">@(order.Freight.HasValue ? order.Freight.Value.ToString("#,##0") : "")</td>
+                <td class="center">@Html.ActionLink("修改", "UpdateOrder", new { controller = "Order", orderID = order.OrderID })</td>
+                <td class="center">@Html.ActionLink("刪除", "DeleteOrder", new { controller = "Order", orderID = order.OrderID })</td>
+            </tr>
+        }
+    </tbody>
 </table>
 
-
-<button type="button" onclick="location.href='@Url.Action("Query", "Order")';">回查詢頁</button>
+<button type="button" class="btn btn-warning" onclick="location.href='@Url.Action("Query", "Order")';">回查詢頁</button>
 
