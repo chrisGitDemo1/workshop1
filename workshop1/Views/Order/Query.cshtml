@@ -16,11 +16,11 @@
         </tr>
         <tr>
             <td>@Html.LabelFor(m => m.EmployeeID)</td>
-            <td colspan="3">@Html.EditorFor(m => m.EmployeeID)</td>
+            <td colspan="3">@Html.DropDownListFor(m => m.EmployeeID, (IEnumerable<SelectListItem>)ViewBag.EmployeeList, "請選擇")</td>
         </tr>
         <tr>
             <td>@Html.LabelFor(m => m.ShipperID)</td>
-            <td colspan="3">@Html.EditorFor(m => m.ShipperID)</td>
+            <td colspan="3">@Html.DropDownListFor(m => m.ShipperID, (IEnumerable<SelectListItem>)ViewBag.ShipperList, "請選擇")</td>
         </tr>
         <tr>
             <td>@Html.LabelFor(m => m.OrderDate)</td>
@@ -37,6 +37,7 @@
             <td colspan="3">
                 <input type="submit" value="查詢" />
                 <input type="reset" value="清除" />
+                <button type="button" onclick="location.href='@Url.Action("CreateOrder", "Order")';">新增訂單</button>
             </td>
         </tr>
     </table>

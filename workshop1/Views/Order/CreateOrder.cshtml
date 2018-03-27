@@ -1,0 +1,86 @@
+﻿@model workshop1.Models.Order
+@{ ViewBag.Title = "建立訂單"; }
+
+@using (Html.BeginForm("CreateOrder", "Order", FormMethod.Post))
+{
+    <table>
+        <tr></tr>
+        <tr>
+            <td>@Html.LabelFor(m => m.CustomerID, new { @class="required" })</td>
+            <td colspan="3">
+                @Html.DropDownListFor(m => m.CustomerID, (IEnumerable<SelectListItem>)ViewBag.CustomerList, "請選擇")
+                @Html.ValidationMessageFor(m => m.CustomerID)
+            </td>
+        </tr>
+        <tr>
+            <td>@Html.LabelFor(m => m.EmployeeID, new { @class = "required" })</td>
+            <td colspan="3">
+                @Html.DropDownListFor(m => m.EmployeeID, (IEnumerable<SelectListItem>)ViewBag.EmployeeList, "請選擇")
+                @Html.ValidationMessageFor(m=>m.EmployeeID)
+            </td>
+        </tr>
+        <tr>
+            <td>@Html.LabelFor(m => m.OrderDate, new { @class = "required" })</td>
+            <td>
+                @Html.TextBoxFor(m => m.OrderDate, new { type = "date" })
+                @Html.ValidationMessageFor(m => m.OrderDate)
+            </td>
+            <td>@Html.LabelFor(m => m.RequiredDate, new { @class = "required" })</td>
+            <td>
+                @Html.TextBoxFor(m => m.RequiredDate, new { type = "date" })
+                @Html.ValidationMessageFor(m => m.RequiredDate)
+            </td>
+        </tr>
+        <tr>
+            <td>@Html.LabelFor(m => m.ShipedDate)</td>
+            <td colspan="3">@Html.TextBoxFor(m => m.ShipedDate, new { type = "date" })</td>
+        </tr>
+        <tr>
+            <td>@Html.LabelFor(m => m.ShipperID)</td>
+            <td colspan="3">@Html.DropDownListFor(m => m.ShipperID, (IEnumerable<SelectListItem>)ViewBag.ShipperList, "請選擇")</td>
+        </tr>
+        <tr>
+            <td>@Html.LabelFor(m => m.Freight)</td>
+            <td colspan="3">@Html.TextBoxFor(m => m.Freight, new { type = "number", @class="input-number"})</td>
+        </tr>
+        <tr>
+            <td>@Html.LabelFor(m => m.ShipCountry)</td>
+            <td>
+                @Html.TextBoxFor(m => m.ShipCountry)
+                @Html.ValidationMessageFor(m => m.ShipCountry)
+            </td>
+            <td>@Html.LabelFor(m => m.ShipCity)</td>
+            <td>
+                @Html.TextBoxFor(m => m.ShipCity)
+                @Html.ValidationMessageFor(m => m.ShipCity)
+            </td>
+        </tr>
+        <tr>
+            <td>@Html.LabelFor(m => m.ShipRegin)</td>
+            <td>
+                @Html.TextBoxFor(m => m.ShipRegin)
+                @Html.ValidationMessageFor(m => m.ShipRegin)
+            </td>
+            <td>@Html.LabelFor(m => m.ShipPostalCode)</td>
+            <td>
+                @Html.TextBoxFor(m => m.ShipPostalCode)
+                @Html.ValidationMessageFor(m => m.ShipPostalCode)
+            </td>
+        </tr>
+        <tr>
+            <td>@Html.LabelFor(m => m.ShipAddress)</td>
+            <td colspan="3">
+                @Html.TextBoxFor(m => m.ShipAddress)
+                @Html.ValidationMessageFor(m => m.ShipAddress)
+            </td>
+        </tr>
+        <tr>
+            <td></td>
+            <td colspan="3">
+                <input type="submit" value="存檔" />
+                <button type="button" onclick="location.href='@Url.Action("Query", "Order")';">回前一頁</button>
+            </td>
+        </tr>
+    </table>
+}
+

@@ -14,6 +14,8 @@
             <th>訂購日期</th>
             <th>發貨日期</th>
             <th>運費</th>
+            <th></th>
+            <th></th>
         </tr>
     </thead>
     @foreach (var order in Model)
@@ -22,9 +24,14 @@
             <td>@order.OrderID</td>
             <td>@customers.Single(m => m.CustomerID == order.CustomerID).CompanyName</td>
             <td>@order.OrderDate.ToString("yyyy/MM/dd")</td>
-            <td>@order.ShipedDate.ToString("yyyy/MM/dd")</td>
-            <td>@order.Freight.ToString("#,###")</td>
+            <td>@(order.ShipedDate.HasValue ? order.ShipedDate.Value.ToString("yyyy/MM/dd") : "")</td>
+            <td>@(order.Freight.HasValue ? order.Freight.Value.ToString("#,##0") : "")</td>
+            <td>@Html.ActionLink("修改", "UpdateOrder", new { controller="Order", orderID = order.OrderID })</td>
+            <td>@Html.ActionLink("刪除", "DeleteOrder", new { controller="Order", orderID = order.OrderID })</td>
         </tr>
     }
 </table>
+
+
+<button type="button" onclick="location.href='@Url.Action("Query", "Order")';">回查詢頁</button>
 

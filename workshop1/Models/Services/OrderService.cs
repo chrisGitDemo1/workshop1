@@ -19,7 +19,7 @@ namespace workshop1.Models.Services
                 EmployeeID = 1,
                 OrderDate = new DateTime(2018, 3, 27),
                 RequiredDate = new DateTime(2018, 3, 30),
-                ShipedDate = new DateTime(2018, 3,29),
+                //ShipedDate = new DateTime(2018, 3,29),
                 ShipperID = 1,
                 Freight = 300,
                 ShipAddress = "高雄市燕巢校區高雄應用科技大學",
@@ -47,6 +47,21 @@ namespace workshop1.Models.Services
         };
 
         /// <summary>
+        /// 下一筆訂單編號
+        /// </summary>
+        private static int CurrentOrderNum = Orders.Count + 1;
+
+        /// <summary>
+        /// 取得 Order by 訂單編號
+        /// </summary>
+        /// <param name="orderID">訂單編號</param>
+        /// <returns></returns>
+        public Order GetOrder(int orderID)
+        {
+            return Orders.SingleOrDefault(m => m.OrderID == orderID);
+        }
+
+        /// <summary>
         /// 取得 Orders by 條件
         /// </summary>
         /// <returns></returns>
@@ -65,9 +80,9 @@ namespace workshop1.Models.Services
             // 客戶名稱 (like 查詢)
             if (!string.IsNullOrWhiteSpace(arg.CompanyName))
             {
-                currentOrders = 
+                currentOrders =
                     currentOrders.Where(
-                        m =>customerService.GetCompanyName(m.CustomerID).Contains(arg.CompanyName)
+                        m => customerService.GetCompanyName(m.CustomerID).Contains(arg.CompanyName)
                     );
             }
 
@@ -96,12 +111,51 @@ namespace workshop1.Models.Services
             }
 
             // 出貨日期
-            //if (arg.ShipedDate.HasValue)
-            //{
-            //    currentOrders = currentOrders.Where(m => m.ShipedDate == arg.ShipedDate.Value);
-            //}
+            if (arg.ShipedDate.HasValue)
+            {
+                currentOrders = currentOrders.Where(m => m.ShipedDate == arg.ShipedDate.Value);
+            }
 
-            return currentOrders.ToList();
+            return currentOrders.OrderBy(m=>m.OrderID).ToList();
+        }
+
+        /// <summary>
+        /// 新增 Order
+        /// </summary>
+        /// <param name="order">欲新增的訂單資料</param>
+        public void InsOrder(Order order)
+        {
+            order.OrderID = CurrentOrderNum++;
+            Orders.Add(order);
+        }
+
+        /// <summary>
+        /// 更新 Order
+        /// </summary>
+        /// <param name="order">欲更新的訂單資料</param>
+        public void UpdOrder(Order order)
+        {
+            Order oldOrder = Orders.SingleOrDefault(m => m.OrderID == order.OrderID);
+
+            if (oldOrder != null)
+            {
+                Orders.Remove(oldOrder);
+                Orders.Add(order);
+            }
+            else
+            {
+                throw new ArgumentException("欲修改訂單不存在。");
+            }
+        }
+
+        /// <summary>
+        /// 刪除 Order
+        /// </summary>
+        /// <param name="orderID">訂單編號</param>
+        public void DelOrder(int orderID)
+        {
+            Order delOrder = Orders.SingleOrDefault(m => m.OrderID == orderID);
+            Orders.Remove(delOrder);
         }
     }
 }
