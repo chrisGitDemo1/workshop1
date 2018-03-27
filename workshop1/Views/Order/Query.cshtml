@@ -1,0 +1,43 @@
+﻿@model workshop1.Models.OrderQueryArg
+@{ ViewBag.Title = "訂單查詢頁面"; }
+
+
+@using (Html.BeginForm("OrderList", "Order", FormMethod.Post))
+{
+
+    <table>
+        <tr>
+            <td>@Html.LabelFor(m => m.OrderID)</td>
+            <td colspan="3">@Html.EditorFor(m => m.OrderID)</td>
+        </tr>
+        <tr>
+            <td>@Html.LabelFor(m => m.CompanyName)</td>
+            <td colspan="3">@Html.EditorFor(m => m.CompanyName)</td>
+        </tr>
+        <tr>
+            <td>@Html.LabelFor(m => m.EmployeeID)</td>
+            <td colspan="3">@Html.EditorFor(m => m.EmployeeID)</td>
+        </tr>
+        <tr>
+            <td>@Html.LabelFor(m => m.ShipperID)</td>
+            <td colspan="3">@Html.EditorFor(m => m.ShipperID)</td>
+        </tr>
+        <tr>
+            <td>@Html.LabelFor(m => m.OrderDate)</td>
+            <td>@Html.EditorFor(m => m.OrderDate)</td>
+            <td>@Html.LabelFor(m => m.ShipedDate)</td>
+            <td>@Html.EditorFor(m => m.ShipedDate)</td>
+        </tr>
+        <tr>
+            <td>@Html.LabelFor(m => m.RequiredDate)</td>
+            <td colspan="3">@Html.EditorFor(m => m.RequiredDate)</td>
+        </tr>
+        <tr>
+            <td></td>
+            <td colspan="3">
+                <input type="submit" value="查詢" />
+                <input type="reset" value="清除" />
+            </td>
+        </tr>
+    </table>
+}
