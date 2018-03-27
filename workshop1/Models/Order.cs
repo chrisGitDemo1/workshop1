@@ -12,7 +12,7 @@ namespace workshop1.Models
         public int EmployeeID { get; set; }
         public DateTime OrderDate { get; set; }
         public DateTime RequiredDate { get; set; }
-        public DateTime ShipedDate { get; set; }
+        public DateTime? ShipedDate { get; set; }
         public int ShipperID { get; set; }
         public decimal Freight { get; set; }
         public string ShipAddress { get; set; }

@@ -37,7 +37,7 @@ namespace workshop1.Models.Services
                 RequiredDate = new DateTime(2018, 4, 20),
                 ShipedDate = new DateTime(2018, 4,10),
                 ShipperID = 2,
-                Freight = 1500,
+                Freight = 1111500,
                 ShipAddress = "高雄市建功校區高雄應用科技大學",
                 ShipCity = "高雄市",
                 ShipRegin = "三民區",
@@ -96,10 +96,10 @@ namespace workshop1.Models.Services
             }
 
             // 出貨日期
-            if (arg.ShipedDate.HasValue)
-            {
-                currentOrders = currentOrders.Where(m => m.ShipedDate == arg.ShipedDate.Value);
-            }
+            //if (arg.ShipedDate.HasValue)
+            //{
+            //    currentOrders = currentOrders.Where(m => m.ShipedDate == arg.ShipedDate.Value);
+            //}
 
             return currentOrders.ToList();
         }
