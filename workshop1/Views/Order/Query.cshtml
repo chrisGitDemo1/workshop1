@@ -24,13 +24,13 @@
         </tr>
         <tr>
             <td>@Html.LabelFor(m => m.OrderDate)</td>
-            <td>@Html.EditorFor(m => m.OrderDate)</td>
+            <td>@Html.TextBoxFor(m => m.OrderDate, new { type = "date" })</td>
             <td>@Html.LabelFor(m => m.ShipedDate)</td>
-            <td>@Html.EditorFor(m => m.ShipedDate)</td>
+            <td>@Html.TextBoxFor(m => m.ShipedDate, new { type = "date" })</td>
         </tr>
         <tr>
             <td>@Html.LabelFor(m => m.RequiredDate)</td>
-            <td colspan="3">@Html.EditorFor(m => m.RequiredDate)</td>
+            <td colspan="3">@Html.TextBoxFor(m => m.RequiredDate, new { type = "date" })</td>
         </tr>
         <tr>
             <td></td>
